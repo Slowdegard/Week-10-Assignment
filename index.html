@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <title>Table with Form</title>
+  <style>
+    .container {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Table with Form</h1>
+    
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr>
+            <td>John Doe</td>
+            <td>johndoe@example.com</td>
+          </tr>
+          <tr>
+            <td>Jane Smith</td>
+            <td>janesmith@example.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form id="add-row-form">
+      <div class="form-group">
+        <label for="nameInput">Name</label>
+        <input type="text" class="form-control" id="nameInput" placeholder="Enter name" required>
+      </div>
+      <div class="form-group">
+        <label for="emailInput">Email</label>
+        <input type="email" class="form-control" id="emailInput" placeholder="Enter email" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Row</button>
+    </form>
+  </div>
+
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  <script>
+    document.getElementById("add-row-form").addEventListener("submit", function(e) {
+      e.preventDefault(); // Prevent form submission
+
+      // Get input values
+      var name = document.getElementById("nameInput").value;
+      var email = document.getElementById("emailInput").value;
+
+      // Create a new table row
+      var row = document.createElement("tr");
+      var nameCell = document.createElement("td");
+      var emailCell = document.createElement("td");
+
+      // Set the cell values
+      nameCell.textContent = name;
+      emailCell.textContent = email;
+
+      // Append cells to the row
+      row.appendChild(nameCell);
+      row.appendChild(emailCell);
+
+      // Append the row to the table body
+      document.getElementById("table-body").appendChild(row);
+
+      // Reset the form
+      document.getElementById("nameInput").value = "";
+      document.getElementById("emailInput").value = "";
+    });
+  </script>
+</body>
+</html>
